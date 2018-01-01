@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import 'd3-geomap/d3.geomap.min.js'
+
+declare var d3: any;
 
 @Component({
   selector: 'app-map',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
+
+    let map = d3.geomap()
+      .geofile('/assets/countries.json');
+    
+    d3.select('#map')
+      .call(map.draw, map);
   }
 
 }
