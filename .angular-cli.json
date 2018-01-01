@@ -19,9 +19,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "d3-geomap/d3.geomap.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "d3-geomap/d3.geomap.dependencies.min.js",
+        "d3-geomap/d3.geomap.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
