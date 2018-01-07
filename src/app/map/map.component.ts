@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import 'd3-geomap/d3.geomap.min.js'
 
 declare var d3: any;
+declare var colorbrewer: any;
 
 @Component({
   selector: 'app-map',
@@ -14,12 +15,19 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
+    var map = d3.geomap.choropleth()
+      .geofile('/assets/countries.json')
+      .colors(colorbrewer.YlGnBu[9])
+      .column('streams')
+      .domain([0, 0.11])
+      .legend(false)
+      .unitId('countryCode');
 
-    let map = d3.geomap()
-      .geofile('/assets/countries.json');
-    
-    d3.select('#map')
-      .call(map.draw, map);
+      d3.csv('/assets/test-data.csv', function(error, data) {
+        d3.select('#map')
+            .datum(data)
+            .call(map.draw, map);
+      });
   }
 
 }
