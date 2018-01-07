@@ -20,11 +20,14 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "d3-geomap/d3.geomap.css"
+        "d3-geomap/d3.geomap.css",
+        "select2/css/select2.min.css"
       ],
       "scripts": [
         "d3-geomap/d3.geomap.dependencies.min.js",
-        "d3-geomap/d3.geomap.min.js"
+        "d3-geomap/d3.geomap.min.js",
+        "../node_modules/jquery/dist/jquery.min.js",
+        "select2/js/select2.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
