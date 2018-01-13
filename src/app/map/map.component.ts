@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import 'd3-geomap/d3.geomap.min.js'
+import 'd3-geomap/d3.geomap.min.js';
 
 declare var d3: any;
 declare var colorbrewer: any;
@@ -11,7 +11,7 @@ declare var colorbrewer: any;
 })
 export class MapComponent implements OnInit {
 
-constructor() { 
+constructor() {
 }
 
 ngOnInit() {

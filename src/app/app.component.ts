@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
 
 
     public exampleData: Array<Select2OptionData>;
-    
+
     ngOnInit(): void {
         this.exampleData = [
             {
