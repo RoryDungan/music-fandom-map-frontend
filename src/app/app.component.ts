@@ -9,7 +9,6 @@ import { Select2OptionData } from 'ng2-select2';
 export class AppComponent implements OnInit {
     title = 'Music Fandom Map';
 
-
     public exampleData: Array<Select2OptionData>;
 
     ngOnInit(): void {
