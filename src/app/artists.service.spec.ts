@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { testArtists } from '../models/testData';
+import { testArtists, testStatsFuture } from '../models/testData';
 import { IArtistInfo } from '../models/IArtistInfo';
 
 class HttpClientStub {
@@ -34,9 +34,9 @@ describe('ArtistsService', () => {
         expect(service).toBeTruthy();
     });
 
-    it('gets correct route when all artists are requested', () => {
+    it('gets correct route when all artists are requested', async () => {
         spyOn(http, 'get').and.returnValue(Observable.of(testArtists));
-        service.getAllArtists();
+        await service.getAllArtists();
         expect(http.get).toHaveBeenCalledWith('/api/v1/artists');
     });
 
@@ -55,5 +55,18 @@ describe('ArtistsService', () => {
         const actual = await service.getAllArtists();
 
         expect(actual).toEqual(expected);
+    });
+
+    it('gets correct route to request stats for a specified artist', async () => {
+        spyOn(http, 'get').and.returnValue(Observable.of(testStatsFuture));
+        await service.getArtistStats('5a51a895db7f6c1fee0001dc');
+        expect(http.get).toHaveBeenCalledWith('/api/v1/artist/5a51a895db7f6c1fee0001dc');
+    });
+
+    it('returns artist stats', async () => {
+        spyOn(http, 'get').and.returnValue(Observable.of(testStatsFuture));
+        const actual = await service.getArtistStats('5a51a895db7f6c1fee0001dc');
+
+        expect(actual).toEqual(testStatsFuture);
     });
 });
