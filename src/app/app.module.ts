@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
+import { ArtistsService } from './artists.service';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { MapComponent } from './map/map.component';
         Select2Module,
         HttpClientModule
     ],
-    providers: [],
+    providers: [
+        ArtistsService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

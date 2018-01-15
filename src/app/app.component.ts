@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select2OptionData } from 'ng2-select2';
+import { ArtistsService } from './artists.service';
 
 @Component({
     selector: 'app-root',
@@ -9,27 +10,22 @@ import { Select2OptionData } from 'ng2-select2';
 export class AppComponent implements OnInit {
     title = 'Music Fandom Map';
 
-    public exampleData: Array<Select2OptionData>;
+    artistsData: Select2OptionData[] = [];
+
+    constructor(private artistsService: ArtistsService) { }
 
     ngOnInit(): void {
-        this.exampleData = [
-            {
-                id: 'basic1',
-                text: 'Basic 1'
-            },
-            {
-                id: 'basic2',
-                disabled: true,
-                text: 'Basic 2'
-            },
-            {
-                id: 'basic3',
-                text: 'Basic 3'
-            },
-            {
-                id: 'basic4',
-                text: 'Basic 4'
-            }
-        ];
+        this.getArtists();
+    }
+
+    getArtists(): void {
+        this.artistsService.getAllArtists()
+            .then(artists =>
+                this.artistsData = artists.map(a => <Select2OptionData>{
+                    id: a.id,
+                    text: a.name
+                })
+            )
+            .catch(ex => console.error(ex));
     }
 }
