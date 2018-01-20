@@ -4,5 +4,14 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<select2 [data]="exampleData"></select2>
+<select2
+  [data]="artistsData"
+  [value]="0"
+  [options]="{
+    allowClear: true,
+    placeholder: 'Select an artist...',
+    closeOnSelect: false
+  }"
+  >
+</select2>
 <app-map></app-map>
