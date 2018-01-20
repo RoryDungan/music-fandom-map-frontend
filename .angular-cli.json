@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "d3-geomap/d3.geomap.css"
+        "d3-geomap/d3.geomap.css",
+        "ng2-select.css"
       ],
       "scripts": [
         "d3-geomap/d3.geomap.dependencies.min.js",

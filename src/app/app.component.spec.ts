@@ -1,12 +1,12 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
-import { Select2Component } from 'ng2-select2';
 import { ArtistsService } from './artists.service';
 import { AppModule } from './app.module';
 import { Observable } from 'rxjs/Observable';
 import { testArtists } from '../models/testData';
 import { HttpClient } from '@angular/common/http';
+import { SelectComponent } from 'ng2-select';
 
 class HttpClientStub {
     public get(url: string): Observable<{[id: string]: string}> {
@@ -23,8 +23,7 @@ describe('AppComponent', () => {
             ],
             declarations: [
                 AppComponent,
-                MapComponent,
-                Select2Component
+                MapComponent
             ],
         }).compileComponents();
     }));

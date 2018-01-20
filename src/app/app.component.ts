@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistsService } from './artists.service';
 
+interface SelectItem {
+    id: string;
+    text: string;
+}
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -9,7 +14,7 @@ import { ArtistsService } from './artists.service';
 export class AppComponent implements OnInit {
     title = 'Music Fandom Map';
 
-    // artistsData: Select2OptionData[] = [];
+    artistsData: SelectItem[] = [];
 
     constructor(private artistsService: ArtistsService) { }
 
@@ -18,13 +23,13 @@ export class AppComponent implements OnInit {
     }
 
     getArtists(): void {
-        // this.artistsService.getAllArtists()
-        //     .then(artists =>
-        //         this.artistsData = artists.map(a => <Select2OptionData>{
-        //             id: a.id,
-        //             text: a.name
-        //         })
-        //     )
-        //     .catch(ex => console.error(ex));
+        this.artistsService.getAllArtists()
+            .then(artists =>
+                this.artistsData = artists.map(a => ({
+                    id: a.id,
+                    text: a.name
+                }) as SelectItem)
+            )
+            .catch(ex => console.error(ex));
     }
 }
