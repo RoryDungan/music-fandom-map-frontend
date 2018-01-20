@@ -1,20 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IArtistInfo } from '../models/IArtistInfo';
+import { IArtistStats } from '../models/IArtistStats';
 
 interface IdToArtistMap {
     [id: string]: string;
 }
 
 const getArtistName: IdToArtistMap = { };
-
-/**
- * Stats for a specified country for a given artist
- */
-interface IArtistStats {
-    countryCode: string;
-    streams: number;
-}
 
 @Injectable()
 export class ArtistsService {
@@ -35,8 +28,7 @@ export class ArtistsService {
             const nameB = b.name.toLowerCase();
             if (nameA < nameB) {
                 return -1;
-            }
-            else if (nameA > nameB) {
+            } else if (nameA > nameB) {
                 return 1;
             }
             return 0;
