@@ -6,7 +6,7 @@ import { AppModule } from './app.module';
 import { Observable } from 'rxjs/Observable';
 import { testArtists } from '../models/testData';
 import { HttpClient } from '@angular/common/http';
-import { SelectComponent } from 'ng2-select';
+import { SelectModule } from 'ng2-select';
 
 class HttpClientStub {
     public get(url: string): Observable<{[id: string]: string}> {
@@ -25,6 +25,9 @@ describe('AppComponent', () => {
                 AppComponent,
                 MapComponent
             ],
+            imports: [
+                SelectModule
+            ]
         }).compileComponents();
     }));
     it('should create the app', async(() => {

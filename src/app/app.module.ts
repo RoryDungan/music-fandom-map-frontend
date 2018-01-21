@@ -6,7 +6,8 @@ import { SelectModule } from 'ng2-select';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { ArtistsService } from './artists.service';
-
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -15,6 +16,8 @@ import { ArtistsService } from './artists.service';
     ],
     imports: [
         BrowserModule,
+        CommonModule,
+        FormsModule,
         SelectModule,
         HttpClientModule
     ],

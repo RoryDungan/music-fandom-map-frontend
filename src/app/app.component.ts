@@ -16,6 +16,8 @@ export class AppComponent implements OnInit {
 
     artistsData: SelectItem[] = [];
 
+    selectedId?: string;
+
     constructor(private artistsService: ArtistsService) { }
 
     ngOnInit(): void {
