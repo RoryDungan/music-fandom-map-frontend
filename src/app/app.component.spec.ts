@@ -70,10 +70,10 @@ describe('AppComponent', () => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
 
-        expect(app.selectedId).toEqual(undefined);
+        expect(app.selectedArtist).toEqual(undefined);
 
         app.artistSelected({ id: '20', text: 'J Dilla' });
 
-        expect(app.selectedId).toEqual('20');
+        expect(app.selectedArtist).toEqual({ id: '20', name: 'J Dilla' });
     }));
 });

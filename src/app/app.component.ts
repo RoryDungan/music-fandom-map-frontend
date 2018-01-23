@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistsService } from './artists.service';
+import { IArtistInfo } from '../models/IArtistInfo';
 
 interface SelectItem {
     id: string;
@@ -16,7 +17,7 @@ export class AppComponent implements OnInit {
 
     artistsData: SelectItem[] = [];
 
-    selectedId?: string;
+    selectedArtist?: IArtistInfo;
 
     constructor(private artistsService: ArtistsService) { }
 
@@ -36,6 +37,6 @@ export class AppComponent implements OnInit {
     }
 
     public artistSelected(value: SelectItem) {
-        this.selectedId = value.id;
+        this.selectedArtist = { id: value.id, name: value.text };
     }
 }
