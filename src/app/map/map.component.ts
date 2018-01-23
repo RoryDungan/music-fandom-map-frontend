@@ -15,16 +15,27 @@ declare var colorbrewer: any;
 export class MapComponent implements OnInit {
     private map: any;
 
-    @Input('artist')
-    setArtist(value: IArtistInfo) {
+    @Input()
+    set artist(value: IArtistInfo) {
+        if (!value) {
+            return;
+        }
+
         this.artistsService.getArtistStats(value.id)
-            .then(this.drawMap)
+            .then(s => this.drawMap(s))
             .catch(ex => console.error(ex));
     }
 
     drawMap(stats: IArtistStats[]) {
+        // Workaround - the map only expects strings even though the values are
+        // numbers
+        const formattedStats = stats
+            .map(v => ({ countryCode: v.countryCode, streams: `${v.streams}` }));
+
+        d3.select('#map').remove();
+
         d3.select('#map')
-            .datum(stats)
+            .datum(formattedStats)
             .call(this.map.draw, this.map);
     }
 
