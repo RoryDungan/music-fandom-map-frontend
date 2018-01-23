@@ -30,20 +30,39 @@ describe('AppComponent', () => {
             ]
         }).compileComponents();
     }));
+
     it('should create the app', async(() => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
+
     it(`should have as title 'Music Fandom Map'`, async(() => {
         const fixture = TestBed.createComponent(AppComponent);
         const app = fixture.debugElement.componentInstance;
         expect(app.title).toEqual('Music Fandom Map');
     }));
+
     it('should render title in a h1 tag', async(() => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector('h1').textContent).toContain('Welcome to Music Fandom Map!');
+    }));
+
+    it('should get list of artists from service', async(() => {
+        const artistsService = TestBed.get(ArtistsService);
+        spyOn(artistsService, 'getAllArtists').and.returnValue(Promise.resolve([
+            { id: '1', name: 'Death Grips' }
+        ]));
+
+        const fixture = TestBed.createComponent(AppComponent);
+
+        const app = fixture.debugElement.componentInstance;
+        fixture.detectChanges();
+        fixture.whenStable()
+            .then(() =>
+                expect(app.artistsData).toEqual([{ id: '1', text: 'Death Grips' }])
+            );
     }));
 });
