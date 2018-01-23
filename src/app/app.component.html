@@ -8,6 +8,7 @@
   placeholder="Select an artist..."
   [allowClear]="true"
   [items]="artistsData"
+  (selected)="artistSelected($event)"
   >
 </ng-select>
 <app-map></app-map>

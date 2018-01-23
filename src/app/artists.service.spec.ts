@@ -45,14 +45,14 @@ describe('ArtistsService', () => {
             'id1': 'Madvillain',
             'id2': 'M.F. DOOM',
             'id3': 'madlib',
-        }
+        };
 
         const expected: IArtistInfo[] = [
             { id: 'id2', name: 'M.F. DOOM' },
             { id: 'id3', name: 'madlib' },
             { id: 'id1', name: 'Madvillain' }
         ];
-        
+
         spyOn(http, 'get').and.returnValue(Observable.of(testData));
         const actual = await service.getAllArtists();
 

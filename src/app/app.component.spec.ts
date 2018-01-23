@@ -65,4 +65,15 @@ describe('AppComponent', () => {
                 expect(app.artistsData).toEqual([{ id: '1', text: 'Death Grips' }])
             );
     }));
+
+    it('should set selectedId when artist selected', async(() => {
+        const fixture = TestBed.createComponent(AppComponent);
+        const app = fixture.debugElement.componentInstance;
+
+        expect(app.selectedId).toEqual(undefined);
+
+        app.artistSelected({ id: '20', text: 'J Dilla' });
+
+        expect(app.selectedId).toEqual('20');
+    }));
 });

@@ -34,4 +34,8 @@ export class AppComponent implements OnInit {
             )
             .catch(ex => console.error(ex));
     }
+
+    public artistSelected(value: SelectItem) {
+        this.selectedId = value.id;
+    }
 }
