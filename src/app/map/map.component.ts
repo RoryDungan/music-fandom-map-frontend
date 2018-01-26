@@ -72,7 +72,7 @@ export class MapComponent implements OnInit {
             formattedStats[v.countryCode] = this.fills[streamsKey];
         }
 
-        this.map.updateChoropleth(formattedStats);
+        this.map.updateChoropleth(formattedStats, { reset: true });
     }
 
     constructor(private artistsService: ArtistsService) {
