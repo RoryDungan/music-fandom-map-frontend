@@ -20,12 +20,9 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "d3-geomap/d3.geomap.css",
         "ng2-select.css"
       ],
       "scripts": [
-        "d3-geomap/d3.geomap.dependencies.min.js",
-        "d3-geomap/d3.geomap.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
