@@ -12,7 +12,7 @@ import * as DataMap from 'datamaps/dist/datamaps.world.min';
     styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-    private map: any;
+    private map: DataMap;
 
     @Input()
     set artist(value: IArtistInfo) {
@@ -25,15 +25,54 @@ export class MapComponent implements OnInit {
             .catch(ex => console.error(ex));
     }
 
-    drawMap(stats: IArtistStats[]) {
-        // Workaround - the map only expects strings even though the values are
-        // numbers
-        const formattedStats = stats
-            .map(v => ({ countryCode: v.countryCode, streams: `${v.streams}` }));
+    // RdPu from ColorBrewer
+    private fills: {[id: string]: string} = {
+        f0: '#FFF7F3',
+        f1: '#FDE0DD',
+        f2: '#FCC5C0',
+        f3: '#FA9FB5',
+        f4: '#F768A1',
+        f5: '#DD3497',
+        f6: '#AE017E',
+        f7: '#7A0177',
+        f8: '#49006A',
+    };
 
-        // d3.select('#map')
-        //     .datum(formattedStats)
-        //     .call(this.map.draw, this.map);
+    drawMap(stats: IArtistStats[]) {
+        // Turn numbers of streams into colours
+        const maxValue = stats.reduce(
+            (acc, curr) => curr.streams > acc ?  curr.streams : acc,
+            0
+        );
+
+        const formattedStats = {};
+        for (const v of stats) {
+            const relativeToMax = v.streams / maxValue;
+            let streamsKey;
+            if (relativeToMax < 1 / 9) {
+                streamsKey = 'f0';
+            } else if (relativeToMax < 2 / 9) {
+                streamsKey = 'f1';
+            } else if (relativeToMax < 3 / 9) {
+                streamsKey = 'f2';
+            } else if (relativeToMax < 4 / 9) {
+                streamsKey = 'f3';
+            } else if (relativeToMax < 5 / 9) {
+                streamsKey = 'f4';
+            } else if (relativeToMax < 6 / 9) {
+                streamsKey = 'f5';
+            } else if (relativeToMax < 7 / 9) {
+                streamsKey = 'f6';
+            } else if (relativeToMax < 8 / 9) {
+                streamsKey = 'f7';
+            } else {
+                streamsKey = 'f8';
+            }
+
+            formattedStats[v.countryCode] = this.fills[streamsKey];
+        }
+
+        this.map.updateChoropleth(formattedStats);
     }
 
     constructor(private artistsService: ArtistsService) {
@@ -41,18 +80,11 @@ export class MapComponent implements OnInit {
 
     ngOnInit() {
         // Init map
-        // this.map = d3.geomap.choropleth()
-        //     .geofile('/assets/countries.json')
-        //     .colors(colorbrewer.YlGnBu[9])
-        //     .column('streams')
-        //     .domain([0, 0.11])
-        //     .legend(false)
-        //     .unitId('countryCode');
-        const map = new DataMap({
+        this.map = new DataMap({
             element: document.getElementById('map'),
+            fills: {
+                defaultFill: 'lightgrey'
+            }
         });
-
-        // // Draw the empty map
-        // this.drawMap([]);
     }
 }
