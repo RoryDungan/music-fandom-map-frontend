@@ -1,3 +1,5 @@
+import { IArtistStats } from "./IArtistStats";
+
 export const testArtists = {
     '5a51a895db7f6c1fee00046b': 'Post Malone',
     '5a51a895db7f6c1fee000185': 'Ed Sheeran',
@@ -9,83 +11,65 @@ export const testArtists = {
 };
 
 /**
- * Example stats for an artist (in this case, taken from Future)
+ * Example stats for an artist (in this case, taken from The Weeknd)
  */
-export const testStatsFuture = [
-    {
-        'streams': 3.9458266e-3,
-        'countryCode': 'USA'
-    },
-    {
-        'streams': 2.7318862e-3,
-        'countryCode': 'GBR'
-    },
-    {
-        'streams': 2.4854972e-3,
-        'countryCode': 'AUT'
-    },
-    {
-        'streams': 2.4796436e-3,
-        'countryCode': 'AUS'
-    },
-    {
-        'streams': 3.0908552e-3,
-        'countryCode': 'BEL'
-    },
-    {
-        'streams': 3.7682895e-3,
-        'countryCode': 'CAN'
-    },
-    {
-        'streams': 3.4734672e-3,
-        'countryCode': 'CHE'
-    },
-    {
-        'streams': 2.6963027e-3,
-        'countryCode': 'DEU'
-    },
-    {
-        'streams': 2.6809215e-3,
-        'countryCode': 'DNK'
-    },
-    {
-        'streams': 2.374722e-3,
-        'countryCode': 'FIN'
-    },
-    {
-        'streams': 2.8035508e-3,
-        'countryCode': 'FRA'
-    },
-    {
-        'streams': 6.1578536e-3,
-        'countryCode': 'GRC'
-    },
-    {
-        'streams': 2.6399645e-3,
-        'countryCode': 'HUN'
-    },
-    {
-        'streams': 2.6388548e-3,
-        'countryCode': 'NOR'
-    },
-    {
-        'streams': 2.428746e-3,
-        'countryCode': 'NZL'
-    },
-    {
-        'streams': 3.9716098e-3,
-        'countryCode': 'POL'
-    },
-    {
-        'streams': 2.6323837e-3,
-        'countryCode': 'PRT'
-    },
-    {
-        'streams': 2.6141503e-3,
-        'countryCode': 'SWE'
-    },
-    {
-        'streams': 6.1173225e-3,
-        'countryCode': 'TUR'
-    }
-];
+export const testStats: IArtistStats = {
+	"imageUrl": "https://lastfm-img2.akamaized.net/i/u/300x300/88034451e014e1fa51f0c15634fedf6d.png",
+	"name": "The Weeknd",
+	"streams": {
+		"DEU": 1.0375024e-2,
+		"ITA": 4.0242136e-3,
+		"HKG": 1.3924714e-2,
+		"SGP": 1.0744352e-2,
+		"CZE": 1.3012436e-2,
+		"IRL": 1.624909e-2,
+		"CHL": 4.1562826e-3,
+		"GBR": 1.4915298e-2,
+		"PAN": 4.078006e-3,
+		"EST": 3.1496283e-2,
+		"LTU": 3.478543e-2,
+		"THA": 1.2134921e-2,
+		"POL": 1.4559674e-2,
+		"PRY": 1.8497285e-3,
+		"LVA": 2.6679834e-2,
+		"NOR": 2.0481396e-2,
+		"HUN": 1.6077625e-2,
+		"TUR": 1.3996692e-2,
+		"ECU": 4.6951883e-3,
+		"CHE": 1.434683e-2,
+		"ISL": 2.0911196e-2,
+		"SVK": 2.3527322e-2,
+		"ESP": 3.77738e-3,
+		"GTM": 7.9554e-3,
+		"DOM": 4.437646e-3,
+		"URY": 2.1016905e-3,
+		"BRA": 5.376618e-3,
+		"DNK": 2.1037757e-2,
+		"ARG": 3.4889453e-3,
+		"PHL": 6.6742487e-3,
+		"JPN": 9.139141e-3,
+		"CAN": 2.6232585e-2,
+		"PER": 3.5769758e-3,
+		"MYS": 1.1614471e-2,
+		"USA": 2.2304965e-2,
+		"AUS": 1.604405e-2,
+		"HND": 5.818348e-3,
+		"TWN": 1.3803232e-2,
+		"FRA": 7.10963e-3,
+		"COL": 7.8110574e-3,
+		"AUT": 9.528331e-3,
+		"CRI": 8.882729e-3,
+		"MEX": 8.078033e-3,
+		"NZL": 1.3638434e-2,
+		"IDN": 6.791884e-3,
+		"BEL": 1.3677075e-2,
+		"GRC": 3.091426e-2,
+		"NLD": 1.0063841e-2,
+		"PRT": 1.7873913e-2,
+		"BOL": 3.5819446e-3,
+		"FIN": 1.5052018e-2,
+		"SLV": 5.002928e-3,
+		"SWE": 2.251004e-2
+	},
+	"description": "Abel Makkonen Tesfaye (Ge'ez: አቤል ተስፋዬ, ʾÄbel Täsfaye, born 16 February 1990), known professionally as The Weeknd (pronounced the weekend), is a Canadian singer, songwriter, and record producer.\n\nIn late 2010, Tesfaye anonymously uploaded several songs to YouTube under the name \"The Weeknd\". He released three nine-track mixtapes throughout 2011: House of Balloons, Thursday and Echoes of Silence, which were critically acclaimed. In 2012 <a href=\"https://www.last.fm/music/The+Weeknd\">Read more on Last.fm</a>"
+};

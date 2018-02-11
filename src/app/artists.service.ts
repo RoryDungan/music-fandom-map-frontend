@@ -36,8 +36,8 @@ export class ArtistsService {
     }
 
     // TODO: test
-    public async getArtistStats(artistId: string): Promise<IArtistStats[]> {
-        return this.http.get<IArtistStats[]>(`/api/v1/artist/${artistId}`)
+    public async getArtistStats(artistId: string): Promise<IArtistStats> {
+        return this.http.get<IArtistStats>(`/api/v1/artist/${artistId}`)
             .toPromise();
     }
 }

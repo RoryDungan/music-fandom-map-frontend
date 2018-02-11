@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { IArtistInfo } from '../../models/IArtistInfo';
 import { ArtistsService } from '../artists.service';
-import { IArtistStats } from '../../models/IArtistStats';
+import { IArtistStats, StreamStats } from '../../models/IArtistStats';
 import * as d3 from 'd3';
 import * as topojson from 'topojson';
 import * as DataMap from 'datamaps/dist/datamaps.world.min';
+import { assertNotNull } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'app-map',
@@ -21,7 +22,7 @@ export class MapComponent implements OnInit {
         }
 
         this.artistsService.getArtistStats(value.id)
-            .then(s => this.drawMap(s))
+            .then(s => this.drawMap(s.streams))
             .catch(ex => console.error(ex));
     }
 
@@ -38,16 +39,17 @@ export class MapComponent implements OnInit {
         f8: '#49006A',
     };
 
-    drawMap(stats: IArtistStats[]) {
+    drawMap(streams: StreamStats) {
+
         // Turn numbers of streams into colours
-        const maxValue = stats.reduce(
-            (acc, curr) => curr.streams > acc ?  curr.streams : acc,
+        const maxValue = Object.values(streams).reduce(
+            (acc, curr) => curr > acc ?  curr : acc,
             0
         );
 
         const formattedStats = {};
-        for (const v of stats) {
-            const relativeToMax = v.streams / maxValue;
+        for (const v in streams) {
+            const relativeToMax = streams[v] / maxValue;
             let streamsKey;
             if (relativeToMax < 1 / 9) {
                 streamsKey = 'f0';
@@ -69,7 +71,7 @@ export class MapComponent implements OnInit {
                 streamsKey = 'f8';
             }
 
-            formattedStats[v.countryCode] = this.fills[streamsKey];
+            formattedStats[v] = this.fills[streamsKey];
         }
 
         this.map.updateChoropleth(formattedStats, { reset: true });

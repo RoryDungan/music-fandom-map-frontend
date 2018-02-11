@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { testArtists, testStatsFuture } from '../models/testData';
+import { testArtists, testStats } from '../models/testData';
 import { IArtistInfo } from '../models/IArtistInfo';
 
 class HttpClientStub {
@@ -60,15 +60,15 @@ describe('ArtistsService', () => {
     });
 
     it('gets correct route to request stats for a specified artist', async () => {
-        spyOn(http, 'get').and.returnValue(Observable.of(testStatsFuture));
+        spyOn(http, 'get').and.returnValue(Observable.of(testStats));
         await service.getArtistStats('5a51a895db7f6c1fee0001dc');
         expect(http.get).toHaveBeenCalledWith('/api/v1/artist/5a51a895db7f6c1fee0001dc');
     });
 
     it('returns artist stats', async () => {
-        spyOn(http, 'get').and.returnValue(Observable.of(testStatsFuture));
+        spyOn(http, 'get').and.returnValue(Observable.of(testStats));
         const actual = await service.getArtistStats('5a51a895db7f6c1fee0001dc');
 
-        expect(actual).toEqual(testStatsFuture);
+        expect(actual).toEqual(testStats);
     });
 });
