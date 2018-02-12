@@ -1,23 +1,27 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<app-map [artist]="currentArtistStats()"></app-map>
-<ng-select
-  placeholder="Select an artist..."
-  [allowClear]="true"
-  [items]="artistsData"
-  (selected)="artistSelected($event)"
-  >
-</ng-select>
-
-<div>
-  <p *ngIf="currentArtistDescription()" [innerHTML]="currentArtistDescription()">
-  </p>
-  <img 
-    *ngIf="currentArtistImage()"
-    [src]="currentArtistImage()"
+<div class="container">
+  <div class="page-header">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+  <app-map [artist]="currentArtistStats()"></app-map>
+  <ng-select
+    placeholder="Select an artist..."
+    [allowClear]="true"
+    [items]="artistsData"
+    (selected)="artistSelected($event)"
     >
+  </ng-select>
+
+  <div>
+    <div class="row">
+      <div class="col-sm-6 col-md-8" *ngIf="currentArtistDescription()">
+        <p class="well" [innerHTML]="currentArtistDescription()">
+        </p>
+      </div>
+      <div class="col-sm-6 col-md-4" *ngIf="currentArtistImage()">
+        <img [src]="currentArtistImage()" class="img-wrap img-thumbnail">
+      </div>
+    </div>
+  </div>
 </div>
