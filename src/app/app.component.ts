@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtistsService } from './artists.service';
 import { IArtistInfo } from '../models/IArtistInfo';
+import { IArtistStats, StreamStats } from '../models/IArtistStats';
 
 interface SelectItem {
     id: string;
@@ -18,6 +19,8 @@ export class AppComponent implements OnInit {
     artistsData: SelectItem[] = [];
 
     selectedArtist?: IArtistInfo;
+
+    selectedArtistDetails?: IArtistStats;
 
     constructor(private artistsService: ArtistsService) { }
 
@@ -38,5 +41,29 @@ export class AppComponent implements OnInit {
 
     public artistSelected(value: SelectItem) {
         this.selectedArtist = { id: value.id, name: value.text };
+        this.artistsService.getArtistStats(value.id)
+            .then(a => this.selectedArtistDetails = a)
+            .catch(ex => console.error(ex));
+    }
+
+    public currentArtistImage(): string | undefined {
+        if (this.selectedArtistDetails) {
+            return this.selectedArtistDetails.imageUrl;
+        }
+        return undefined;
+    }
+
+    public currentArtistDescription(): string | undefined {
+        if (this.selectedArtistDetails) {
+            return this.selectedArtistDetails.description;
+        }
+        return undefined;
+    }
+
+    public currentArtistStats(): StreamStats | undefined {
+        if (this.selectedArtistDetails) {
+            return this.selectedArtistDetails.streams;
+        }
+        return undefined;
     }
 }

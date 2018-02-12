@@ -16,14 +16,12 @@ export class MapComponent implements OnInit {
     private map: DataMap;
 
     @Input()
-    set artist(value: IArtistInfo) {
+    set artist(value: StreamStats) {
         if (!value) {
             return;
         }
-
-        this.artistsService.getArtistStats(value.id)
-            .then(s => this.drawMap(s.streams))
-            .catch(ex => console.error(ex));
+        
+        this.drawMap(value);
     }
 
     // RdPu from ColorBrewer
@@ -77,7 +75,7 @@ export class MapComponent implements OnInit {
         this.map.updateChoropleth(formattedStats, { reset: true });
     }
 
-    constructor(private artistsService: ArtistsService) {
+    constructor() {
     }
 
     ngOnInit() {

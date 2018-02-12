@@ -4,6 +4,7 @@
     Welcome to {{ title }}!
   </h1>
 </div>
+<app-map [artist]="currentArtistStats()"></app-map>
 <ng-select
   placeholder="Select an artist..."
   [allowClear]="true"
@@ -11,4 +12,12 @@
   (selected)="artistSelected($event)"
   >
 </ng-select>
-<app-map [artist]="selectedArtist"></app-map>
+
+<div>
+  <p *ngIf="currentArtistDescription()" [innerHTML]="currentArtistDescription()">
+  </p>
+  <img 
+    *ngIf="currentArtistImage()"
+    [src]="currentArtistImage()"
+    >
+</div>
