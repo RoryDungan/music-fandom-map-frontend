@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, AfterViewInit } from '@angular/core';
 import { IArtistInfo } from '../../models/IArtistInfo';
 import { ArtistsService } from '../artists.service';
 import { IArtistStats, StreamStats } from '../../models/IArtistStats';
@@ -12,7 +12,7 @@ import { assertNotNull } from '@angular/compiler/src/output/output_ast';
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit {
     private map: DataMap;
 
     @Input()
@@ -75,16 +75,20 @@ export class MapComponent implements OnInit {
         this.map.updateChoropleth(formattedStats, { reset: true });
     }
 
-    constructor() {
-    }
+    constructor(private elRef:ElementRef) {}
 
-    ngOnInit() {
+    ngAfterViewInit() {
         // Init map
         this.map = new DataMap({
-            element: document.getElementById('map'),
+            element: this.elRef.nativeElement.querySelector('div'),
+            responsive: true,
             fills: {
                 defaultFill: 'lightgrey'
             }
         });
+    }
+
+    public onResized(event): void {
+        this.map.resize();
     }
 }
