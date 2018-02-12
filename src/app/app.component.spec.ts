@@ -47,7 +47,7 @@ describe('AppComponent', () => {
         const fixture = TestBed.createComponent(AppComponent);
         fixture.detectChanges();
         const compiled = fixture.debugElement.nativeElement;
-        expect(compiled.querySelector('h1').textContent).toContain('Welcome to Music Fandom Map!');
+        expect(compiled.querySelector('h1').textContent).toContain('Music Fandom Map');
     }));
 
     it('should get list of artists from service', async(() => {
